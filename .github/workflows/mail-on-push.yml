@@ -22,12 +22,20 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
 
           subject: "Push to ${{ github.repository }}"
-          body: |
-            Repository: ${{ github.repository }}
-            Branch: ${{ github.ref_name }}
-            User: ${{ github.event.pusher.name }}
-            Commit SHA: ${{ github.sha }}
-            Commit message: ${{ github.event.head_commit.message }}
+          html_body: |
+            <h2>🚀 Uus push repositooriumis</h2>
+            <ul>
+              <li><b>Repositoorium:</b> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a></li>
+              <li><b>Autor:</b> ${{ github.event.pusher.name }}</li>
+              <li><b>Sõnum:</b> ${{ github.event.head_commit.message }}</li>
+              <li><b>Haru:</b> ${{ github.ref_name }}</li>
+              <li><b>Aeg:</b> ${{ github.event.head_commit.timestamp }}</li>
+              <li><b>Link commitile:</b> <a href="${{ github.event.head_commit.url }}">ava</a></li>
+            </ul>
+            <hr>
+            <p style="color:#666;font-size:12px;">
+              Saadetud automaatselt GitHub Actionsi kaudu
+            </p>
 
           to: eha20082@gmail.com
           from: GitHub Actions
